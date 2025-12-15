@@ -110,9 +110,9 @@ students.append = ({"CPSID": {cpsid},
 
 
 
-# 6. The program must NOT delete or overwrite any existing students.
+# 6. The program must NOT delete or overwrite any existing students. (aaron)
 
-# 7. If the CPS ID already exists in the system:
+# 7. If the CPS ID already exists in the system:(aaron)
         #    - Do NOT add the student
         #    - Display an error message saying the CPS ID is already taken
 
