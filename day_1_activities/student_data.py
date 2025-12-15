@@ -1,3 +1,5 @@
+
+
 # Exercise 1 — Understanding the Structure (Warm-Up)
 
 #     Answer using words only:

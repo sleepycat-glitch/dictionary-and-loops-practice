@@ -39,14 +39,24 @@
     #     What would students[0]['Email'][1] return?
 
     #     Why does students[0]['Email'][0] use two sets of brackets?
-import student_data
+import student_data 
 
-# print(student_data.students)
-students = student_data.students
-print(len(students))
-print(students[0]['Combo,Name'])
-print(students[0]['Email'][0])
-print(students[0]['Email'][1])
+# # print(student_data.students)
+students = student_data.students #imports data from student_data.py
+# print(len(students)) # length of list of students (each dict = item in list)
+# print(students[0]['Combo,Name']) # index 0 (first dict), key called 'Combo','Name'
+# print(students[0]['Email'][0]) # index 0, key called 'Email', first email
+# print(students[0]['Email'][1]) # index 0, key called 'Email', second email
+
+# # very case-sensitive, if want to get key from dict, must type in key exactly how it is in dict
+# print(students[0]['FName'])
+# print(students[0]['MName'])
+# print(students[0]['HR'])
+# print(students[1]['CPSID'])
+# print(students[1]['Combo,Name'])
+
+# print(students[2]['Email'])
+
 
 # What is being counted?
 
@@ -68,11 +78,18 @@ print(students[0]['Email'][1])
 #and printing the name and email of the students
 #we are also printing a line of underscores to separate the students
 #we are also printing a line of underscores to separate the students
-for student in students:
-    print(student['Combo,Name'])
-    print(student['Email'][0])
-    print(student['Email'][1])
-    print("_"*25)
+# for student in students:
+#     print(student['CPSID'])
+#     print(student['Combo,Name'])
+#     print(student['GL'])
+#     print(student['HR'])
+#     print(student['Email'][0])
+#     print(student['Email'][1])
+#     student.update({'Lunch': 'Reduced'})
+#     print(student['Lunch'])
+#     if student['GL']>= 10:
+#         student.update({'Off Campus': "Yes"})
+#     print("_"*25)
 
 # What does the loop variable student represent on each pass?
 
@@ -88,11 +105,17 @@ for student in students:
 # we are asking the user to input their name
 # then we are checking if the name is in the data
 # if the name is in the data we are printing the name and "this works"
-name = input("what is you name?") 
+name = input("what is you name?: ") 
 for student in students:
     if name == student['Combo,Name']:
         print(student['Combo,Name'])
         print("this works")
+
+cpsid = input("What is your CPSID?: ")
+for student in students:
+    if cpsid == student['CPSID']:
+        print(student['CPSID'])
+        print("This works.")
 
 # What is the goal of this search?
 
