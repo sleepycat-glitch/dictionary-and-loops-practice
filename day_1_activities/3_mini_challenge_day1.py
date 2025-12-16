@@ -18,6 +18,10 @@
 
             # Describe the search process
 
+
+
+
+
 ## be able to add new data
 # Your program must allow the secretary to ADD a brand new student
 # into the system while the program is running.
@@ -38,51 +42,68 @@
     #    - Secondary Email
 import student_data 
 students = student_data.students
+student_list = [ ]
+for student in students.values():
+    student_list.append('Combo,Name')
 
+search_student = input("Type full name of student you are searching for. If you don't wish to search for a student, type 'quit': ")
+while not search_student == "quit":
+    for i in range(len(students)):
+        if search_student in student_list:
+            print(students[i])
+        else: 
+            continue
+
+
+print("Student Registration Form")
+print("-"*30)
 cpsid = input("What is your CPSID?: ")
-while cpsid == " " or len(cpsid)<8:
-    print("Please type in your CPSID")
+while not cpsid or len(cpsid)<8:
+    if not cpsid:
+        print("Please type in your CPSID")
+    if len(cpsid)<8:
+        print("CPSID is not at least 8 digits.")
     cpsid = input("What is your CPSID?: ")
 
 
 first_name = input("What is your first name?: ")
-while first_name == " ":
+while not first_name:
     print("Please enter your first name")
     first_name = input("What is your first name?: ")
     
         
 last_name = input("What is your last name?: ")
-while last_name == " ":
+while not last_name:
     print("Please enter your last name")
     last_name = input("What is your last name?: ")
 
 
 middle_name = input("What is your middle name?: ")
-while middle_name == " ":
+while not middle_name:
     print("Please enter your middle name")
     middle_name = input("What is your middle name?: ")
 
 
 homeroom = input("What is your homeroom?: ")
-while homeroom == " ":
+while not homeroom:
     print("Please enter your homeroom")
     homeroom = input("What is your homeroom?: ")
 
 
 grade_level = input("What is your grade level?: ")
-while grade_level == " ":
+while not grade_level:
     print("Please enter your grade level")
     grade_level = input("What is your grade level?: ")
 
         
 primary_email = input("What is your first email?: ")
-while primary_email == " ":
+while not primary_email:
     print("Please enter your first email")
     primary_email = input("What is your first email?: ")
 
 
 secondary_email = input("What is your second email?: ")
-while secondary_email == " ":
+while not secondary_email:
     print("Please enter your second email")
     secondary_email = input("What is your second email?: ")
 
@@ -93,15 +114,15 @@ combo_name = last_name, first_name
 # 3. Store all of the new information into ONE dictionary 
     #    that matches the structure of the existing student data.
 # 4. Add (append) that new dictionary into the main students list.
-students.append = ({"CPSID": {cpsid},
+new_student = {"CPSID": {cpsid},
                   "Combo,Name": {combo_name},
                    "LName": {last_name},
                    "FName": {first_name},
                    "MName": {middle_name},
                    "HR": {homeroom},
                    "GL": {grade_level},
-                   "Email": {primary_email, secondary_email}})
-
+                   "Email": {primary_email, secondary_email}}
+students.append(new_student)
 
 # 5. After adding the student, the program must:
     #    - Print a confirmation message
@@ -110,11 +131,21 @@ students.append = ({"CPSID": {cpsid},
 
 
 
-# 6. The program must NOT delete or overwrite any existing students. (aaron)
+# 6. The program must NOT delete or overwrite any existing students.
 
-# 7. If the CPS ID already exists in the system:(aaron)
+# 7. If the CPS ID already exists in the system:
         #    - Do NOT add the student
         #    - Display an error message saying the CPS ID is already taken
 
 
+id_list = [ ]
+for student in students.values():
+    id_list.append('CPSID')
+for i in range(len(students)):
+    if cpsid in id_list:
+        print("Error: CPS ID is already taken.")
+        print("Unregistering new student.")
+        students.pop(-1)
+    else:
+        continue
 
