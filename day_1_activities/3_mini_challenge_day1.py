@@ -1,4 +1,4 @@
-# Project Prompt:
+# Project Prompt:  Vanessa Rodriguez, Ayelen Cardenas
 
 # You are hired to build a Student Lookup Tool for a school front office. The secretary must be able to:
 
@@ -31,7 +31,7 @@
 # If the student already exists (same CPS ID), your program must block the entry to prevent duplicates.
 
 # The program should:
-    # 1. Ask the user for the following information: (Vanessa)
+    # 1. Ask the user for the following information: 
     #    - CPS ID
     #    - First Name
     #    - Last Name
@@ -40,16 +40,17 @@
     #    - Grade Level
     #    - Primary Email
     #    - Secondary Email
+
 import student_data 
 students = student_data.students
-student_list = [ ]
-for student in students.values():
-    student_list.append('Combo,Name')
 
-search_student = input("Type full name of student you are searching for. If you don't wish to search for a student, type 'quit': ")
-while not search_student == "quit":
-    for i in range(len(students)):
-        if search_student in student_list:
+key_to_extract = 'Combo,Name'
+student_list = [d[key_to_extract] for d in students if key_to_extract in d]
+
+search_student = input("Type full name of student you are searching for in 'last name', 'first name' format. If you don't wish to search for a student, type 'quit': ")
+if not search_student == "quit":
+    for i in range(len(student_list)):
+        if search_student==student_list[i]:
             print(students[i])
         else: 
             continue
@@ -58,10 +59,11 @@ while not search_student == "quit":
 print("Student Registration Form")
 print("-"*30)
 cpsid = input("What is your CPSID?: ")
+
 while not cpsid or len(cpsid)<8:
     if not cpsid:
         print("Please type in your CPSID")
-    if len(cpsid)<8:
+    elif len(cpsid)<8:
         print("CPSID is not at least 8 digits.")
     cpsid = input("What is your CPSID?: ")
 
@@ -124,28 +126,44 @@ new_student = {"CPSID": {cpsid},
                    "Email": {primary_email, secondary_email}}
 students.append(new_student)
 
+key_to_extract1 = 'CPSID'
+id_list = [d[key_to_extract1] for d in students if key_to_extract1 in d]
+res = False
+for i in range(len(id_list)):
+        if cpsid == id_list[i]:
+            print("Error: CPS ID is already taken.")
+            print("Unregistering new student.")
+            students.pop(-1)
+            res = True
+        else: 
+            continue
+
+
+if res == False:
+    print(f"Registration confirmed: Student {combo_name}, CPSID: {cpsid}, HR: {homeroom}, GL: {grade_level}, Email: {primary_email, secondary_email} ")
+
+
 # 5. After adding the student, the program must:
     #    - Print a confirmation message
     #    - Print the total number of students in the system
     #    - Print the newly added student record
 
+total_students = len(student_list)
+print(f"Total number of students: {total_students}")
 
+students_dict = {
+    1: {"name": "Vicky Xavier", "grade": "B"},
+    2: {"name": "Liam Thomas", "grade": "A"}
+}
+new_student_id = 3
+new_student_data = {"name": "Quinn Clark", "grade": "C"}
+
+students_dict[new_student_id] = student_data
+print(f"Newly added student (via variable): {new_student_data}")
 
 # 6. The program must NOT delete or overwrite any existing students.
 
 # 7. If the CPS ID already exists in the system:
         #    - Do NOT add the student
         #    - Display an error message saying the CPS ID is already taken
-
-
-id_list = [ ]
-for student in students.values():
-    id_list.append('CPSID')
-for i in range(len(students)):
-    if cpsid in id_list:
-        print("Error: CPS ID is already taken.")
-        print("Unregistering new student.")
-        students.pop(-1)
-    else:
-        continue
 
